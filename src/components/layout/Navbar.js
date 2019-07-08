@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const Navbar = ({title, icon}) => {
 
     return (
-        <div className="navbar bg-secondary text-white">
-            <h1><i className={icon}/> {title}</h1>
+        <div className="navbar bg-contact-keeper text-white">
+            <h4><i className={icon}/> {title}</h4>
 
         </div>
     );
