@@ -1,9 +1,13 @@
 import React from 'react';
+import Contacts from '../contacts/Contacts'
 
 function Home(props) {
     return (
-        <div>
-            <h1>Home</h1>
+        <div className="row">
+            <div className="col">{/* ContactForm */}</div>
+            <div className="col">
+                <Contacts/>
+            </div>
         </div>
     );
 }
