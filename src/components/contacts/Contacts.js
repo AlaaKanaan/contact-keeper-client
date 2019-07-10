@@ -18,10 +18,7 @@ const Contacts = props => {
 
     return (
         <Fragment>
-            {
-                contactsList.map(contact => (<ContactItem key={contact.id} contact={contact}/>))
-
-            }
+            {contactsList.map(contact => (<ContactItem key={contact.id} contact={contact}/>))}
         </Fragment>
     );
 };
