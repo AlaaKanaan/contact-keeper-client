@@ -4,7 +4,7 @@ import ContactContext from '../../context/contact/contactContext'
 const ContactForm = props => {
 
     const contactContext = useContext(ContactContext);
-    const {addContact, current, clearCurrentContact} = contactContext;
+    const {addContact, current, clearCurrentContact, updateContact, setCurrentContact} = contactContext;
 
     useEffect(() => {
         if (current !== null) {
@@ -28,8 +28,15 @@ const ContactForm = props => {
     const onChange = e => setContact({...contact, [e.target.name]: e.target.value});
     const onSubmit = e => {
         e.preventDefault();
-        addContact(contact);
-        setContact(defaultValues);
+
+        if (current === null) {
+            addContact(contact);
+            clearAll();
+        } else {
+            updateContact(contact);
+            setCurrentContact(contact);
+        }
+
     };
 
     const clearAll = () => {
@@ -76,7 +83,7 @@ const ContactForm = props => {
 
                         {current &&
                         <button type="button"
-                                className="btn btn-info" onClick={clearAll}>Clear Contact</button>
+                                className="btn btn-info" onClick={clearAll}>Clear</button>
                         }
                     </div>
                 </form>
