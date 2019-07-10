@@ -1,17 +1,26 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import ContactContext from '../../context/contact/contactContext'
 
 const ContactForm = props => {
 
-    const [contact, setContact] = useState({
+    const contactContext = useContext(ContactContext);
+
+    const defaultValues = {
         name: '',
         email: '',
         phone: '',
         type: 'personal',
-    });
+    };
+    const [contact, setContact] = useState(defaultValues);
 
     const {name, email, phone, type} = contact;
 
     const onChange = e => setContact({...contact, [e.target.name]: e.target.value});
+    const onSubmit = e => {
+        e.preventDefault();
+        contactContext.addContact(contact);
+        setContact(defaultValues);
+    };
 
     return (
         <div className="card">
@@ -19,7 +28,7 @@ const ContactForm = props => {
                 Add Contact
             </div>
             <div className="card-body">
-                <form autoComplete="name">
+                <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input className="form-control" type="text"
                                name="name" placeholder="Name" value={name} onChange={onChange}/>
