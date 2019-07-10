@@ -62,17 +62,21 @@ export default (state, action) => {
         case FILTER_CONTACTS:
             return {
                 ...state,
-                filtered: state.contacts.filter(contact => {
-                    const regex = new RegExp(`${action.payload}`, 'gi');
-                    return contact.name.match(regex) || contact.email.match(regex);
-                })
+                filteredContacts: state.contacts.filter(
+                    contact => {
+                        const regex = new RegExp(`${action.payload}`, 'gi');
+                        return contact.name.match(regex) || contact.email.match(regex);
+                    }
+                )
             };
-        case CLEAR_FILTER:
+        case
+        CLEAR_FILTER:
             return {
                 ...state,
-                filtered: null
+                filteredContacts: null
             };
-        case CONTACT_ERROR:
+        case
+        CONTACT_ERROR:
             return {
                 ...state,
                 error: action.payload
