@@ -35,12 +35,14 @@ const ContactForm = props => {
                     <div className="form-group">
                         <h6>Contact Type</h6>
                         <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label className="btn btn-secondary active">
-                                <input type="radio" name="type" value="personal" checked={type === 'personal'}/>
+                            <label className={`btn btn-secondary ${type === 'personal' ? 'active' : ''}`}>
+                                <input type="radio" name="type" value="personal" checked={type === 'personal'}
+                                       onChange={onChange}/>
                                 Personal
                             </label>
-                            <label className="btn btn-secondary">
-                                <input type="radio" name="type" value="professional" checked={type === 'professional'}/>
+                            <label className={`btn btn-secondary ${type === 'professional' ? 'active' : ''}`}>
+                                <input type="radio" name="type" value="professional" checked={type === 'professional'}
+                                       onChange={onChange}/>
                                 Professional
                             </label>
                         </div>
