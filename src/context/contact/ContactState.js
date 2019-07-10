@@ -50,6 +50,10 @@ const ContactState = props => {
         dispatch({type: ADD_CONTACT, payload: contact});
     };
 
+    const deleteContact = id => {
+        dispatch({type: DELETE_CONTACT, payload: id});
+    };
+
 
     //delete contact
 
@@ -73,7 +77,8 @@ const ContactState = props => {
         <ContactContext.Provider
             value={{
                 contacts: state.contacts,
-                addContact
+                addContact,
+                deleteContact
             }}
         >
             {props.children}
