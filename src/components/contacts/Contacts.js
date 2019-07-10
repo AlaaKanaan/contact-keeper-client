@@ -14,7 +14,7 @@ const Contacts = props => {
         )
     }
 
-    let contactsList = filteredContacts ? filteredContacts : contacts;
+    const contactsList = filteredContacts ? filteredContacts : contacts;
 
     return (
         <Fragment>
