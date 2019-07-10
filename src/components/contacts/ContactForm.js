@@ -6,20 +6,21 @@ const ContactForm = props => {
     const contactContext = useContext(ContactContext);
     const {addContact, current, clearCurrentContact, updateContact, setCurrentContact} = contactContext;
 
-    useEffect(() => {
-        if (current !== null) {
-            setContact(current);
-        } else {
-            setContact(defaultValues);
-        }
-    }, [contactContext, current]);
-
     const defaultValues = {
         name: '',
         email: '',
         phone: '',
         type: 'personal',
     };
+
+    useEffect(() => {
+        if (current !== null) {
+            setContact(current);
+        } else {
+            setContact(defaultValues);
+        }
+    }, [contactContext, current, defaultValues]);
+
 
     const [contact, setContact] = useState(defaultValues);
 
