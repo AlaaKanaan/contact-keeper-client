@@ -1,9 +1,18 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import ContactContext from '../../context/contact/contactContext'
 
 const ContactForm = props => {
 
     const contactContext = useContext(ContactContext);
+    const {addContact, current, clearCurrentContact} = contactContext;
+
+    useEffect(() => {
+        if (current !== null) {
+            setContact(current);
+        } else {
+            setContact(defaultValues);
+        }
+    }, [contactContext, current]);
 
     const defaultValues = {
         name: '',
@@ -11,6 +20,7 @@ const ContactForm = props => {
         phone: '',
         type: 'personal',
     };
+
     const [contact, setContact] = useState(defaultValues);
 
     const {name, email, phone, type} = contact;
@@ -18,14 +28,18 @@ const ContactForm = props => {
     const onChange = e => setContact({...contact, [e.target.name]: e.target.value});
     const onSubmit = e => {
         e.preventDefault();
-        contactContext.addContact(contact);
+        addContact(contact);
         setContact(defaultValues);
+    };
+
+    const clearAll = () => {
+        clearCurrentContact();
     };
 
     return (
         <div className="card">
             <div className="card-header">
-                Add Contact
+                {current ? 'Edit Contact' : 'Add Contact'}
             </div>
             <div className="card-body">
                 <form onSubmit={onSubmit}>
@@ -44,19 +58,27 @@ const ContactForm = props => {
                     <div className="form-group">
                         <h6>Contact Type</h6>
                         <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label className={`btn btn-secondary ${type === 'personal' ? 'active' : ''}`}>
+                            <label className={`btn btn-warning ${type === 'personal' ? 'active' : ''}`}>
                                 <input type="radio" name="type" value="personal" checked={type === 'personal'}
                                        onChange={onChange}/>
                                 Personal
                             </label>
-                            <label className={`btn btn-secondary ${type === 'professional' ? 'active' : ''}`}>
+                            <label className={`btn btn-warning ${type === 'professional' ? 'active' : ''}`}>
                                 <input type="radio" name="type" value="professional" checked={type === 'professional'}
                                        onChange={onChange}/>
                                 Professional
                             </label>
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary">Add Contact</button>
+                    <div className="form-group">
+                        <button type="submit"
+                                className="btn btn-primary mr-2">  {current ? 'Update Contact' : 'Add Contact'}</button>
+
+                        {current &&
+                        <button type="button"
+                                className="btn btn-info" onClick={clearAll}>Clear Contact</button>
+                        }
+                    </div>
                 </form>
             </div>
         </div>
