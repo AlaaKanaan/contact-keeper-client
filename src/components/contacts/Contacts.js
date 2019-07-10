@@ -6,12 +6,22 @@ const Contacts = props => {
 
     const contactContext = useContext(ContactContext);
 
-    const {contacts} = contactContext;
+    const {contacts, filteredContacts} = contactContext;
+
+    if (contacts.length === 0) {
+        return (
+            <div className="alert alert-info">Contact list is empty...Please add a contact</div>
+        )
+    }
+
+    let contactsList = filteredContacts ? filteredContacts : contacts;
+
     return (
         <Fragment>
-            {contacts.map(contact => (
-                <ContactItem key={contact.id} contact={contact}/>
-            ))}
+            {
+                contactsList.map(contact => (<ContactItem key={contact.id} contact={contact}/>))
+
+            }
         </Fragment>
     );
 };
