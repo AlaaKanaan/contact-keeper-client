@@ -17,16 +17,24 @@ const ContactForm = props => {
         if (current !== null) {
             setContact(current);
         } else {
-            setContact(defaultValues);
+            setContact({
+                name: '',
+                email: '',
+                phone: '',
+                type: 'personal',
+            });
         }
-    }, [contactContext, current, defaultValues]);
+    }, [contactContext, current]);
 
 
     const [contact, setContact] = useState(defaultValues);
 
     const {name, email, phone, type} = contact;
 
-    const onChange = e => setContact({...contact, [e.target.name]: e.target.value});
+    const onChange = e => {
+        setContact({...contact, [e.target.name]: e.target.value});
+    };
+
     const onSubmit = e => {
         e.preventDefault();
 
@@ -67,12 +75,14 @@ const ContactForm = props => {
                         <h6>Contact Type</h6>
                         <div className="btn-group btn-group-toggle" data-toggle="buttons">
                             <label className={`btn btn-warning ${type === 'personal' ? 'active' : ''}`}>
-                                <input type="radio" name="type" value="personal" checked={type === 'personal'}
+                                <input type="radio" name="type" value="personal"
+                                       checked={type === 'personal'}
                                        onChange={onChange}/>
                                 Personal
                             </label>
                             <label className={`btn btn-warning ${type === 'professional' ? 'active' : ''}`}>
-                                <input type="radio" name="type" value="professional" checked={type === 'professional'}
+                                <input type="radio" name="type"
+                                       value="professional"  checked={type === 'professional'}
                                        onChange={onChange}/>
                                 Professional
                             </label>
