@@ -65,6 +65,7 @@ const Register = () => {
                                name='password'
                                value={password}
                                onChange={onChange}
+                               minLength='6'
                                placeholder="Password"/>
                     </div>
 
@@ -74,6 +75,7 @@ const Register = () => {
                                name='password2'
                                value={password2}
                                onChange={onChange}
+                               minLength='6'
                                placeholder="Password"/>
                     </div>
 
