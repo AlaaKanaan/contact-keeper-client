@@ -82,7 +82,7 @@ const ContactForm = props => {
                             </label>
                             <label className={`btn btn-warning ${type === 'professional' ? 'active' : ''}`}>
                                 <input type="radio" name="type"
-                                       value="professional"  checked={type === 'professional'}
+                                       value="professional" checked={type === 'professional'}
                                        onChange={onChange}/>
                                 Professional
                             </label>
