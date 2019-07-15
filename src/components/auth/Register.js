@@ -1,11 +1,14 @@
 import React, {useContext, useState} from 'react';
 import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
 
     const alertContext = useContext(AlertContext);
+    const authContext = useContext(AuthContext);
 
     const {setAlert} = alertContext;
+    const {register} = authContext;
 
     const [user, setUser] = useState({
         name: '',
@@ -28,7 +31,11 @@ const Register = () => {
         } else if (password !== password2) {
             setAlert('Password do not match', 'danger');
         } else {
-            console.log(user);
+            register({
+                name,
+                email,
+                password
+            })
         }
 
     };
@@ -71,7 +78,7 @@ const Register = () => {
 
                     <div className="form-group">
                         <label htmlFor="password">Confirm Password</label>
-                        <input type="password2" className="form-control" name="password"
+                        <input type="password" className="form-control" name="password"
                                name='password2'
                                value={password2}
                                onChange={onChange}
