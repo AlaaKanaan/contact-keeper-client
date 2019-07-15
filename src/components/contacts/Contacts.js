@@ -14,7 +14,7 @@ const Contacts = props => {
     }, []);
     const {contacts, filteredContacts, getContacts, loading} = contactContext;
 
-    if (contacts.length === 0) {
+    if (contacts !== null && contacts.length === 0 && !loading) {
         return (
             <div className="alert alert-info">Contact list is empty...Please add a contact</div>
         )
