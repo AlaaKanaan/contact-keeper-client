@@ -9,11 +9,14 @@ const Navbar = ({title, icon}) => {
     const authContext = useContext(AuthContext);
     const {isAuthenticated, logout, user} = authContext;
 
+    const onLogout = () => {
+        logout();
+    };
 
     const authLinks = (
         <Fragment>
             <li className="nav-item ">
-                <a href='#!' className="nav-link" onClick={logout}>
+                <a href='#!' className="nav-link" onClick={onLogout}>
                     <span className="pr-2">
                         Hello {user && user.name}
                     </span>
