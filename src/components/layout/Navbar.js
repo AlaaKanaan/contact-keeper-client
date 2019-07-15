@@ -13,7 +13,7 @@ const Navbar = ({title, icon}) => {
     const authLinks = (
         <Fragment>
             <li className="nav-item ">
-                <a href='#!' className="nav-link">
+                <a href='#!' className="nav-link" onClick={logout}>
                     <span className="pr-2">
                         Hello {user && user.name}
                     </span>
