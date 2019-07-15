@@ -24,7 +24,7 @@ const Contacts = props => {
 
     return (
         <Fragment>
-            {!loading ? (
+            {contactsList !== null && !loading ? (
                 <TransitionGroup>
                     {contactsList.map(contact => (
                         <CSSTransition key={contact._id} timeout={300} classNames="item">
