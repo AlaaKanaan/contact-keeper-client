@@ -54,7 +54,7 @@ const Login = (props) => {
                                name="email"
                                value={email}
                                onChange={onChange}
-                               required
+
                                placeholder="Enter email"/>
                     </div>
                     <div className="form-group">
@@ -63,7 +63,7 @@ const Login = (props) => {
                                name='password'
                                value={password}
                                onChange={onChange}
-                               required
+
                                placeholder="Password"/>
                     </div>
 
