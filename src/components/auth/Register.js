@@ -2,20 +2,24 @@ import React, {useContext, useState, useEffect} from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 
-const Register = () => {
+const Register = (props) => {
 
     const alertContext = useContext(AlertContext);
     const authContext = useContext(AuthContext);
 
     const {setAlert} = alertContext;
-    const {register, error, clearErrors} = authContext;
+    const {register, error, clearErrors, isAuthenticated} = authContext;
 
     useEffect(() => {
+        if (isAuthenticated) {
+            props.history.push('/');
+        }
         if (error) {
             setAlert(error, 'danger');
             clearErrors();
         }
-    }, [error]);
+        //eslint-disable-next-line
+    }, [error, props.history, isAuthenticated]);
 
     const [user, setUser] = useState({
         name: '',
@@ -75,7 +79,7 @@ const Register = () => {
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password"
+                        <input type="password" className="form-control"
                                name='password'
                                value={password}
                                onChange={onChange}
@@ -85,7 +89,7 @@ const Register = () => {
 
                     <div className="form-group">
                         <label htmlFor="password">Confirm Password</label>
-                        <input type="password" className="form-control" name="password"
+                        <input type="password" className="form-control"
                                name='password2'
                                value={password2}
                                onChange={onChange}
