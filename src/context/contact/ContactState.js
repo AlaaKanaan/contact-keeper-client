@@ -82,12 +82,12 @@ const ContactState = props => {
 
     //clear current contact
     const clearCurrentContact = () => {
-        dispatch({type: CLEAR_CURRENT, payload: {}});
+        dispatch({type: CLEAR_CURRENT});
     };
 
     //clear current contact
     const clearContacts = () => {
-        dispatch({type: CLEAR_CONTACTS, payload: {}});
+        dispatch({type: CLEAR_CONTACTS});
     };
 
 
