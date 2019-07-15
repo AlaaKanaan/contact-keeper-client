@@ -1,4 +1,4 @@
-import React, {Fragment, useContext} from 'react';
+import React, {Fragment, useContext, useEffect} from 'react';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import ContactContext from '../../context/contact/contactContext'
 import ContactItem from './ContactItem';
@@ -7,8 +7,11 @@ import './assets/contacts.css';
 const Contacts = props => {
 
     const contactContext = useContext(ContactContext);
-
-    const {contacts, filteredContacts} = contactContext;
+    useEffect(() => {
+        getContacts();
+        //eslint-disable-next-line
+    },[]);
+    const {contacts, filteredContacts, getContacts, loading} = contactContext;
 
     if (contacts.length === 0) {
         return (
